@@ -1,0 +1,46 @@
+{% extends 'historialApp/base.html' %}
+{% load static %}
+
+{% block title %}Listado de Consultas Médicas{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Listado de Consultas Médicas</h1>
+
+    <div class="mb-3 text-end">
+        <a href="{% url 'crear_consulta' %}" class="btn btn-success">Crear Nueva Consulta</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Mascota</th>
+                    <th>Diagnóstico</th>
+                    <th>Tratamiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for consulta in consultas %}
+                <tr>
+                    <td>{{ consulta.fecha }}</td>
+                    <td>{{ consulta.mascota.nombre }}</td>
+                    <td>{{ consulta.diagnostico }}</td>
+                    <td>{{ consulta.tratamiento }}</td>
+                    <td>
+                        <a href="{% url 'editar_consulta' consulta.id %}" class="btn btn-sm btn-primary">Editar</a>
+                        <a href="{% url 'eliminar_consulta' consulta.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No hay consultas registradas.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

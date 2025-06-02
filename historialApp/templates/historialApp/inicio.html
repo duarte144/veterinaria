@@ -1,0 +1,172 @@
+{% extends 'historialApp/base.html' %}
+
+{% block title %}Inicio - Sistema Veterinario{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column min-vh-100">
+
+<!-- Encabezado hero -->
+<header class="bg-gradient-primary text-white d-flex flex-column justify-content-center align-items-center text-center py-6 px-3 shadow-lg" style="min-height: 80vh;">
+    <div class="container" style="max-width: 900px;">
+    <h1 class="display-1 fw-bold mb-4 animate-fadeInDown">Sistema de Historial Clínico Veterinario</h1>
+
+    <p class="lead fs-4 mb-5 animate-fadeInUp" style="opacity: 0.85;">
+        La solución integral para veterinarias que buscan optimizar la gestión, seguimiento y atención de sus pacientes peludos y sus dueños.
+    </p>
+    </div>
+</header>
+
+<!-- Beneficios destacados -->
+<section id="beneficios" class="py-5 bg-white">
+    <div class="container" style="max-width: 960px;">
+    <h2 class="text-center fw-bold mb-5">¿Por qué elegir nuestro sistema?</h2>
+    <div class="row text-center gx-5 gy-4">
+
+        <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 h-100 animate-zoomIn">
+            <i class="bi bi-speedometer2 display-3 text-primary mb-3"></i>
+            <h5 class="fw-semibold mb-2">Gestión Eficiente</h5>
+            <p class="text-muted">Centraliza toda la información de pacientes y propietarios para consultas rápidas y precisas.</p>
+        </div>
+        </div>
+
+        <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 h-100 animate-zoomIn" style="animation-delay: 0.15s;">
+            <i class="bi bi-shield-lock-fill display-3 text-success mb-3"></i>
+            <h5 class="fw-semibold mb-2">Seguridad y Confianza</h5>
+            <p class="text-muted">Tus datos y los de tus pacientes están protegidos con las mejores prácticas de seguridad.</p>
+        </div>
+        </div>
+
+        <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 h-100 animate-zoomIn" style="animation-delay: 0.3s;">
+            <i class="bi bi-file-medical-fill display-3 text-info mb-3"></i>
+            <h5 class="fw-semibold mb-2">Historial Médico Completo</h5>
+            <p class="text-muted">Registra y accede a consultas, tratamientos y evoluciones para brindar el mejor cuidado.</p>
+        </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<!-- Funcionalidades con tarjetas -->
+<main class="flex-grow-1 py-5 bg-light">
+    <div class="container" style="max-width: 960px;">
+      <h2 class="text-center fw-bold mb-5">Funciones Principales</h2>
+      <div class="row justify-content-center g-4">
+
+        <div class="col-md-4">
+          <a href="{% url 'lista_propietarios' %}" class="text-decoration-none">
+            <div class="card shadow-sm h-100 border-primary hover-shadow">
+              <div class="card-body text-center">
+                <i class="bi bi-people-fill display-1 text-primary mb-3"></i>
+                <h5 class="card-title fw-bold">Gestión de Propietarios</h5>
+                <p class="card-text text-muted">Administra información de los dueños de las mascotas.</p>
+              </div>
+            </div>
+          </a>
+
+
+        </div>
+
+        <div class="col-md-4">
+          <a href="{% url 'lista_mascotas' %}" class="text-decoration-none">
+            <div class="card shadow-sm h-100 border-success hover-shadow">
+              <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Icono Mascota" width="70" class="mb-3">
+                <h5 class="card-title fw-bold">Gestión de Mascotas</h5>
+                <p class="card-text text-muted">Registra y consulta datos de tus pacientes peludos.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-md-4">
+          <a href="{% url 'lista_consultas' %}" class="text-decoration-none">
+            <div class="card shadow-sm h-100 border-info hover-shadow">
+              <div class="card-body text-center">
+                <i class="bi bi-journal-medical display-1 text-info mb-3"></i>
+                <h5 class="card-title fw-bold">Consultas Médicas</h5>
+                <p class="card-text text-muted">Consulta el historial y registra nuevas consultas médicas.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white text-center py-3 mt-auto">
+    <div class="container">
+      <small>&copy; 2025 Clínica Veterinaria | Todos los derechos reservados</small>
+    </div>
+  </footer>
+
+</div>
+
+<style>
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+  }
+
+  .hover-shadow:hover {
+    box-shadow: 0 0.7rem 1.5rem rgba(0,0,0,.25) !important;
+    transform: translateY(-8px);
+    transition: all 0.3s ease;
+  }
+
+  .hover-shadow {
+    transition: all 0.3s ease;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fadeInDown {
+    animation: fadeInDown 0.8s ease forwards;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+  }
+
+  .animate-zoomIn {
+    animation: zoomIn 0.7s ease forwards;
+  }
+</style>
+{% endblock %}

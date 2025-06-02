@@ -1,0 +1,48 @@
+{% extends 'historialApp/base.html' %}
+
+{% block title %}Propietarios Registrados{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Propietarios</h1>
+    <a href="{% url 'crear_propietario' %}" class="btn btn-primary" role="button" aria-label="Crear Propietario">
+        <i class="bi bi-person-plus me-1" aria-hidden="true"></i> Crear Propietario
+    </a>
+</div>
+
+<div class="table-responsive shadow-sm rounded" role="region" aria-label="Lista de propietarios">
+    <table class="table table-bordered table-striped table-hover align-middle text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Email</th>
+                <th scope="col" aria-label="Acciones">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for propietario in propietarios %}
+            <tr>
+                <td>{{ propietario.nombre }}</td>
+                <td>{{ propietario.direccion }}</td>
+                <td>{{ propietario.telefono }}</td>
+                <td>{{ propietario.email }}</td>
+                <td>
+                    <a href="{% url 'editar_propietario' propietario.id %}" class="btn btn-warning btn-sm" aria-label="Editar propietario {{ propietario.nombre }}">
+                        <i class="bi bi-pencil-square" aria-hidden="true"></i> Editar
+                    </a>
+                    <a href="{% url 'eliminar_propietario' propietario.id %}" class="btn btn-danger btn-sm" aria-label="Eliminar propietario {{ propietario.nombre }}" onclick="return confirm('¿Estás seguro de eliminar este propietario?');">
+                        <i class="bi bi-trash" aria-hidden="true"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center text-muted fst-italic">No hay propietarios registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

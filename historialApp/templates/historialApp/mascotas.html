@@ -1,0 +1,78 @@
+{% extends 'historialApp/base.html' %}
+
+{% block title %}Mascotas Registradas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Mascotas Registradas</h2>
+    <a href="{% url 'crear_mascota' %}" class="btn btn-primary" role="button" aria-label="Agregar nueva mascota">
+        <i class="bi bi-plus-lg me-1" aria-hidden="true"></i> Agregar nueva mascota
+    </a>
+</div>
+
+<div class="table-responsive shadow-sm rounded" role="region" aria-label="Lista de mascotas registradas">
+    <table class="table table-bordered table-striped table-hover align-middle text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Foto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Especie</th>
+                <th scope="col">Raza</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Propietario</th>
+                <th scope="col" aria-label="Editar mascota">Editar</th>
+                <th scope="col" aria-label="Eliminar mascota">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if mascotas %}
+                {% for mascota in mascotas %}
+                    <tr>
+                        <td>
+                            {% if mascota.foto %}
+                                <img src="{{ mascota.foto.url }}" alt="Foto de {{ mascota.nombre }}" width="80" height="80" class="rounded shadow-sm img-fluid" loading="lazy">
+                            {% else %}
+                                <em class="text-muted">Sin foto</em>
+                            {% endif %}
+                        </td>
+                        <td>{{ mascota.nombre }}</td>
+                        <td>{{ mascota.especie }}</td>
+                        <td>{{ mascota.raza }}</td>
+                        <td>{{ mascota.edad }} año{{ mascota.edad|pluralize }}</td>
+                        <td>
+                            {% if mascota.propietario %}
+                                <a href="{% url 'perfil_propietario' mascota.propietario.id %}">
+                                    {{ mascota.propietario.nombre }}
+                                </a>
+                            {% else %}
+                                <em class="text-muted">Sin propietario</em>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'editar_mascota' mascota.id %}" class="btn btn-warning btn-sm" aria-label="Editar mascota {{ mascota.nombre }}">
+                                <i class="bi bi-pencil-square" aria-hidden="true"></i> Editar
+                            </a>
+                        </td>
+                        <td>
+                            <form action="{% url 'eliminar_mascota' mascota.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm" aria-label="Eliminar mascota {{ mascota.nombre }}" onclick="return confirm('¿Estás seguro de eliminar esta mascota?');">
+                                    <i class="bi bi-trash" aria-hidden="true"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center text-muted fst-italic">No hay mascotas registradas.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<a href="{% url 'inicio' %}" class="btn btn-secondary mt-3" role="button" aria-label="Volver al inicio">
+    <i class="bi bi-arrow-left me-1" aria-hidden="true"></i> Volver al inicio
+</a>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "home.html" %}
+
+{% block title %}Cierre de sesión{% endblock %}
+
+{% block content %}
+  <div class="text-center py-5">
+    <h1>Has cerrado sesión exitosamente</h1>
+    <a href="{% url 'login' %}" class="btn btn-primary mt-3">Iniciar sesión nuevamente</a>
+  </div>
+{% endblock %}
